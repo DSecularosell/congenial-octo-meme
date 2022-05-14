@@ -11,3 +11,20 @@ attribs = {
 }
 
 print(attribs.keys())
+
+class player(object):
+    def __init__(self, name, lvl,  val, cond, ing, stab, comm, wtl, wta, wtf):
+        player.self = self
+        player.name = name
+        player.lvl = lvl
+        player.val = val
+        player.cond = cond
+        player.ing = ing
+        player.stab = stab
+        player.comm = comm
+        player.wtl = wtl
+        player.wta = wta
+        player.wtf = wtf
+
+p_c = player('Dakota', 0, 3, 3, 3, 3, 3, 100, 20, 20)
+print(p_c.wtl)
