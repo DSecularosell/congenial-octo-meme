@@ -10,7 +10,6 @@ attribs = {
 
 }
 
-print(attribs.keys())
 
 class player(object):
     def __init__(self, name, lvl,  val, cond, ing, stab, comm, wtl, wta, wtf):
