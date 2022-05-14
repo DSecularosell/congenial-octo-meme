@@ -12,9 +12,9 @@ attribs = {
 
 
 class player(object):
-    def __init__(self, name, lvl,  val, cond, ing, stab, comm, wtl, wta, wtf):
+    def __init__(self, lvl, val, cond, ing, stab, comm, wtl, wta, wtf):
         player.self = self
-        player.name = name
+        player.name = input('Whats your characters name?: ') 
         player.lvl = lvl
         player.val = val
         player.cond = cond
@@ -25,5 +25,5 @@ class player(object):
         player.wta = wta
         player.wtf = wtf
 
-p_c = player('Dakota', 0, 3, 3, 3, 3, 3, 100, 20, 20)
+p_c = player(0, 3, 3, 3, 3, 3, 100, 20, 20)
 print(p_c.wtl)
