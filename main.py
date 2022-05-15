@@ -1,24 +1,32 @@
-import pygame, sys
-from settings import *
+import tcod
 
-class Game:
-    def __init__(self):
-        
-        pygame.init()
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.clock = pygame.time.Clock()
-    
-    def run(self):
+def main():
+    screen_width = 80
+    screen_height = 50
+
+    tileset = tcod.tileset.load_tilesheet(
+        "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
+    )
+
+    with tcod.context.new_terminal(
+        screen_width,
+        screen_height,
+        tileset=tileset,
+        title="Vapour",
+        vsync=True,
+    ) as context:
+        root_console = tcod.Console(screen_width, screen_height, order='F')
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-            
-            self.screen.fill('black')
-            pygame.display.update()
-            self.clock.tick(FPS)
+            root_console.print(x=1,y=1, string='@')
 
-if __name__ == '__main__':
-    game = Game()
-    game.run()
+            context.present(root_console)
+
+            for event in tcod.event.wait():
+                if event.type == "QUIT":
+                    raise SystemExit()
+
+
+
+if __name__ == "__main__":
+    main()
+
