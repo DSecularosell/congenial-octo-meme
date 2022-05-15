@@ -26,4 +26,4 @@ class player(object):
         player.wtf = wtf
 
 p_c = player(0, 3, 3, 3, 3, 3, 100, 20, 20)
-print(p_c.wtl)
+
