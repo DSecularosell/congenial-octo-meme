@@ -30,7 +30,7 @@ class HealingConsumable(Consumable):
     def __init__(self, amount: int):
         self.amount = amount
 
-    def activate(selfction: actions.IteActin) -> None:
+    def activate(self, action: actions.ItemAction) -> None:
         consumer = action.entity
         amount_recovered = consumer.fighter.heal(self.amount)
 
