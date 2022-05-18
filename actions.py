@@ -82,9 +82,11 @@ class ItemAction(Action):
 
 
 
-class EscapeAction(Action):
+
+
+class DropItem(ItemAction):
     def perform(self) -> None:
-        raise SystemExit()
+        self.entity.inventory.drop(self.item)
 
 class WaitAction(Action):
     def perform(self) -> None:
