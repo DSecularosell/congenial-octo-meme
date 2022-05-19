@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class Engine:
 
     game_map: GameMap
-    game_world = GameWorld
+    game_world: GameWorld
 
     def __init__(self, player: Actor):
         self.message_log = MessageLog()
