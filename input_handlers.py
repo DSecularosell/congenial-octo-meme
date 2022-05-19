@@ -397,8 +397,13 @@ class InventoryActivateHandler(InventoryEventHandler):
     TITLE = "Select an item to use"
 
     def on_item_selected(self, item: Item) -> Optional[ActionOrHandler]:
-        """Return the action for the selected item."""
-        return item.consumable.get_action(self.engine.player)
+        if item.consumable:
+            # Return the action for the selected item.
+            return item.consumable.get_action(self.engine.player)
+        elif item.equippable:
+            return actions.EquipAction(self.engine.player, item)
+        else:
+            return None
 
 
 class InventoryDropHandler(InventoryEventHandler):

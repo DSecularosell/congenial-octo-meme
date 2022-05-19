@@ -152,11 +152,9 @@ class Item(Entity):
         )
 
         self.consumable = consumable
+        self.equippable = equippable
         
         if self.consumable:
             self.consumable.parent = self
-
-        self.equippable = equippable
-
-        if self.equippable:
+        elif self.equippable:
             self.equippable.parent = self

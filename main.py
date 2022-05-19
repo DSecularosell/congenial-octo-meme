@@ -2,8 +2,8 @@ import traceback
 
 import tcod
 
+import settings
 import color
-
 import exceptions
 import input_handlers
 import setup_game
@@ -17,8 +17,8 @@ def save_game(handler: input_handlers.BaseEventHandler, filename: str) -> None:
 
 
 def main() -> None:
-    screen_width = 80
-    screen_height = 50
+    screen_width = settings.WIDTH
+    screen_height = settings.HEIGHT
 
     tileset = tcod.tileset.load_tilesheet(
         "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
@@ -30,7 +30,7 @@ def main() -> None:
         screen_width,
         screen_height,
         tileset=tileset,
-        title="Yet Another Roguelike Tutorial",
+        title="Vapour",
         vsync=True,
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
