@@ -5,6 +5,7 @@ import math
 from turtle import color
 from typing import Optional, Tuple, Type, TypeVar, TYPE_CHECKING, Union
 from render_order import RenderOrder
+from components.level import Level
 
 
 if TYPE_CHECKING:
@@ -82,6 +83,7 @@ class Entity:
         self.x += dx
         self.y += dy
 
+
 class Actor(Entity):
     def __init__(
         self,
@@ -94,6 +96,7 @@ class Actor(Entity):
         ai_cls: Type[BaseAI],
         fighter: Fighter,
         inventory: Inventory,
+        level: Level,
     ):
         super().__init__(
             x=x,
@@ -112,6 +115,9 @@ class Actor(Entity):
 
         self.inventory = inventory
         self.inventory.parent = self
+
+        self.level = level
+        self.level.parent = self
 
     @property
     def is_alive(self) -> bool:
