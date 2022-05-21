@@ -22,7 +22,7 @@ dork = Actor(
     name="Dork",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=10, base_defense=0, base_power=3),
+    fighter=Fighter(hp=10, base_defense=0, base_power=4),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=35),
 )
@@ -66,10 +66,18 @@ fireball_scroll = Item(
 )
 
 dagger = Item(
-    char="/", color=(0, 191, 255), name="Dagger", equippable=equippable.Dagger()
+    char="/", 
+    color=(0, 191, 255), 
+    name="Dagger", 
+    equippable=equippable.Dagger()
 )
 
-sword = Item(char="/", color=(0, 191, 255), name="Sword", equippable=equippable.Sword())
+sword = Item(
+    char="/", 
+    color=(0, 191, 255), 
+    name="Sword", 
+    equippable=equippable.Sword()
+)
 
 leather_armor = Item(
     char="[",

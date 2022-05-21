@@ -30,8 +30,9 @@ def new_game() -> Engine:
     room_min_size = 6
     max_rooms = 30
 
-
+    
     player = copy.deepcopy(entity_factories.player)
+    
 
     engine = Engine(player=player)
 
@@ -49,6 +50,7 @@ def new_game() -> Engine:
     engine.message_log.add_message(
         "You wake up in what appears to be a massive, underground Ikea store...", color.welcome_text
     )
+    player.name = input('Can you remember your name?: ')
     dagger = copy.deepcopy(entity_factories.dagger)
     leather_armor = copy.deepcopy(entity_factories.leather_armor)
 
