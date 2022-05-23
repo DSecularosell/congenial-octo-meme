@@ -12,7 +12,7 @@ player = Actor(
     name="Player",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=30, base_defense=2, base_power=3),
+    fighter=Fighter(hp=30, base_regen=1, base_defense=2, base_power=3),
     inventory=Inventory(capacity=26),
     level=Level(level_up_base=200)
 )
@@ -22,7 +22,7 @@ dork = Actor(
     name="Dork",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=10, base_defense=0, base_power=4),
+    fighter=Fighter(hp=10, base_regen=0, base_defense=0, base_power=5),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=35),
 )
@@ -32,7 +32,7 @@ lumpus = Actor(
     name="Lumpus",
     ai_cls=HostileEnemy,
     equipment=Equipment(),
-    fighter=Fighter(hp=16, base_defense=1, base_power=4),
+    fighter=Fighter(hp=16, base_regen=0, base_defense=1, base_power=8),
     inventory=Inventory(capacity=0),
     level=Level(xp_given=100),
 )
@@ -41,7 +41,7 @@ health_potion = Item(
     char="!",
     color=(127, 0, 255),
     name="Health Potion",
-    consumable=consumable.HealingConsumable(amount=4),
+    consumable=consumable.HealingConsumable(amount=8),
 )
 
 lightning_scroll = Item(

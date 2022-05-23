@@ -13,9 +13,10 @@ class Fighter(BaseComponent):
     
     parent: Actor
 
-    def __init__(self, hp: int, base_defense: int, base_power: int):
+    def __init__(self, hp: int, base_regen: int, base_defense: int, base_power: int):
         self.max_hp = hp
         self._hp = hp
+        self.base_regen = base_regen
         self.base_defense = base_defense
         self.base_power = base_power
     @property
@@ -29,12 +30,23 @@ class Fighter(BaseComponent):
             self.die()
     
     @property
+    def regen(self) -> int:
+        return self.base_regen + self.regen_bonus
+    
+    @property
     def defense(self) -> int:
         return self.base_defense + self.defense_bonus
 
     @property
     def power(self) -> int:
         return self.base_power + self.power_bonus
+
+    @property
+    def regen_bonus(self) -> int:
+        if self.parent.equipment:
+            return self.parent.equipment.regen_bonus
+        else:
+            return 0
 
     @property
     def defense_bonus(self) -> int:
@@ -63,6 +75,24 @@ class Fighter(BaseComponent):
 
         self.hp = new_hp_value
 
+        return amount_recovered
+    
+    def regenerate(self, regen) -> int:
+        
+        regen = self.regen
+        
+        if self.hp == self.max_hp:
+            return 0
+        
+        new_hp_value = self.hp + regen
+        
+        if new_hp_value > self.max_hp:
+            new_hp_value = self.max_hp
+        
+        amount_recovered = new_hp_value - self.hp
+        
+        self.hp = new_hp_value
+        
         return amount_recovered
 
     def take_damage(self, amount: int) -> None:

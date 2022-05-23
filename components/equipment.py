@@ -15,6 +15,18 @@ class Equipment(BaseComponent):
     def __init__(self, weapon: Optional[Item] = None, armor: Optional[Item] = None):
         self.weapon = weapon
         self.armor = armor
+    
+    @property
+    def regen_bonus(self) -> int:
+        bonus = 0
+
+        if self.weapon is not None and self.weapon.equippable is not None:
+            bonus += self.weapon.equippable.regen_bonus
+        
+        if self.armor is not None and self.armor.equippable is not None:
+            bonus += self.armor.equippable.regen_bonus
+        
+        return bonus
 
     @property
     def defense_bonus(self) -> int:

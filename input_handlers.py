@@ -120,9 +120,15 @@ class EventHandler(BaseEventHandler):
     def handle_events(self, event: tcod.event.Event) -> BaseEventHandler:
         """Handle events for input handlers with an engine."""
         action_or_state = self.dispatch(event)
+        regen_counter = 0
         if isinstance(action_or_state, BaseEventHandler):
             return action_or_state
         if self.handle_action(action_or_state):
+            if regen_counter < 4:
+                regen_counter += 1
+            elif regen_counter >= 4:
+                self.engine.player.fighter.regenerate()
+                regen_counter = 0
             # A valid action was performed.
             if not self.engine.player.is_alive:
                 # The player was killed sometime during or after the action.
@@ -136,6 +142,7 @@ class EventHandler(BaseEventHandler):
         """Handle actions returned from event methods.
         Returns True if the action will advance a turn.
         """
+
         if action is None:
             return False
 
@@ -144,7 +151,7 @@ class EventHandler(BaseEventHandler):
         except exceptions.Impossible as exc:
             self.engine.message_log.add_message(exc.args[0], color.impossible)
             return False  # Skip enemy turn on exceptions.
-
+        
         self.engine.handle_enemy_turns()
 
         self.engine.update_fov()

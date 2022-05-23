@@ -15,11 +15,13 @@ class Equippable(BaseComponent):
     def __init__(
         self,
         equipment_type: EquipmentType,
+        regen_bonus: int = 0,
         power_bonus: int = 0,
         defense_bonus: int = 0,
     ):
         self.equipment_type = equipment_type
 
+        self.regen_bonus = regen_bonus
         self.power_bonus = power_bonus
         self.defense_bonus = defense_bonus
 
