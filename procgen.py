@@ -26,10 +26,11 @@ max_monsters_by_floor = [
 ]
 
 item_chances: Dict[int, List[Tuple[Entity, int]]] = {
-    0: [(entity_factories.health_potion, 35)],
-    2: [(entity_factories.confusion_scroll, 10), (entity_factories.sword, 1)],
-    4: [(entity_factories.lightning_scroll, 25), (entity_factories.sword, 7)],
-    6: [(entity_factories.fireball_scroll, 25), (entity_factories.chain_mail, 15)],
+    0: [(entity_factories.meatball, 35)],
+    2: [(entity_factories.confusing_siren, 10), (entity_factories.lead_pipe, 1)],
+    4: [(entity_factories.bug_zapper, 25), (entity_factories.lead_pipe, 7)],
+    6: [(entity_factories.hairspray_grenade, 25), (entity_factories.cosplay_armor, 15)],
+    8: [(entity_factories.milgradefatigues, 10), (entity_factories.stapler_nunchucks, 6)]
 }
 
 enemy_chances: Dict[int, List[Tuple[Entity, int]]] = {
@@ -73,7 +74,9 @@ def get_entities_at_random(
     entity_weighted_chance_values = list(entity_weighted_chances.values())
 
     chosen_entities = random.choices(
-        entities, weights=entity_weighted_chance_values, k=number_of_entities
+        entities, 
+        weights=entity_weighted_chance_values, 
+        k=number_of_entities
     )
 
     return chosen_entities

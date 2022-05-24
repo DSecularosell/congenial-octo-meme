@@ -51,17 +51,17 @@ def new_game() -> Engine:
         "You wake up in what appears to be a massive, underground Ikea store...", color.welcome_text
     )
     player.name = input('Can you remember your name?: ')
-    dagger = copy.deepcopy(entity_factories.dagger)
-    leather_armor = copy.deepcopy(entity_factories.leather_armor)
+    shiv = copy.deepcopy(entity_factories.shiv)
+    jumpsuit = copy.deepcopy(entity_factories.jumpsuit)
 
-    dagger.parent = player.inventory
-    leather_armor.parent = player.inventory
+    shiv.parent = player.inventory
+    jumpsuit.parent = player.inventory
 
-    player.inventory.items.append(dagger)
-    player.equipment.toggle_equip(dagger, add_message=False)
+    player.inventory.items.append(shiv)
+    player.equipment.toggle_equip(shiv, add_message=False)
 
-    player.inventory.items.append(leather_armor)
-    player.equipment.toggle_equip(leather_armor, add_message=False)
+    player.inventory.items.append(jumpsuit)
+    player.equipment.toggle_equip(jumpsuit, add_message=False)
     return engine
 
 def load_game(filename: str) -> Engine:

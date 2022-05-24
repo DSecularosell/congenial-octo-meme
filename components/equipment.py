@@ -12,9 +12,10 @@ if TYPE_CHECKING:
 class Equipment(BaseComponent):
     parent: Actor
 
-    def __init__(self, weapon: Optional[Item] = None, armor: Optional[Item] = None):
+    def __init__(self, weapon: Optional[Item] = None, armor: Optional[Item] = None, icon: Optional[Item] = None):
         self.weapon = weapon
         self.armor = armor
+        self.icon = icon
     
     @property
     def regen_bonus(self) -> int:
@@ -53,8 +54,10 @@ class Equipment(BaseComponent):
         return bonus
 
     def item_is_equipped(self, item: Item) -> bool:
-        return self.weapon == item or self.armor == item
-
+        if self.weapon == item or self.armor == item:
+            return True
+        elif self.icon == item:
+            return True
     def unequip_message(self, item_name: str) -> None:
         self.parent.gamemap.engine.message_log.add_message(
             f"You remove the {item_name}."
@@ -85,13 +88,12 @@ class Equipment(BaseComponent):
         setattr(self, slot, None)
 
     def toggle_equip(self, equippable_item: Item, add_message: bool = True) -> None:
-        if (
-            equippable_item.equippable
-            and equippable_item.equippable.equipment_type == EquipmentType.WEAPON
-        ):
+        if (equippable_item.equippable and equippable_item.equippable.equipment_type == EquipmentType.WEAPON):
             slot = "weapon"
-        else:
+        elif (equippable_item.equippable and equippable_item.equippable.equipment_type == EquipmentType.ARMOR):
             slot = "armor"
+        elif (equippable_item.equippable and equippable_item.equippable.equipment_type == EquipmentType.ICON):
+            slot = "icon"
 
         if getattr(self, slot) == equippable_item:
             self.unequip_from_slot(slot, add_message)

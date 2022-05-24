@@ -26,21 +26,29 @@ class Equippable(BaseComponent):
         self.defense_bonus = defense_bonus
 
 
-class Dagger(Equippable):
+class Shiv(Equippable):
     def __init__(self) -> None:
         super().__init__(equipment_type=EquipmentType.WEAPON, power_bonus=2)
 
 
-class Sword(Equippable):
+class LeadPipe(Equippable):
     def __init__(self) -> None:
-        super().__init__(equipment_type=EquipmentType.WEAPON, power_bonus=4)
+        super().__init__(equipment_type=EquipmentType.WEAPON, power_bonus=5, regen_bonus=1)
 
-
-class LeatherArmor(Equippable):
+class StaplerNunchucks(Equippable):
     def __init__(self) -> None:
-        super().__init__(equipment_type=EquipmentType.ARMOR, defense_bonus=1)
+        super().__init__(equipment_type=EquipmentType.WEAPON, regen_bonus=-1, power_bonus=10, defense_bonus=2)
 
 
-class ChainMail(Equippable):
+class BlueJumpSuit(Equippable):
+    def __init__(self) -> None:
+        super().__init__(equipment_type=EquipmentType.ARMOR, defense_bonus=2)
+
+
+class CosplayArmor(Equippable):
     def __init__(self) -> None:
         super().__init__(equipment_type=EquipmentType.ARMOR, defense_bonus=3)
+
+class MilGradeFatigues(Equippable):
+    def __init__(self):
+        super().__init__(equipment_type=EquipmentType.ARMOR, regen_bonus=1, power_bonus=1, defense_bonus=5)

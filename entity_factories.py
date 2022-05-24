@@ -1,3 +1,4 @@
+from asyncio.windows_utils import pipe
 from components.ai import ConfusedEnemy, HostileEnemy
 from components import consumable, equippable
 from components.equipment import Equipment
@@ -48,55 +49,72 @@ hall_monitor = Actor(
     level=Level(xp_given=300),
 )
 
-health_potion = Item(
+meatball = Item(
     char="!",
     color=(127, 0, 255),
     name="Swedish Meatball",
     consumable=consumable.HealingConsumable(amount=8),
 )
 
-lightning_scroll = Item(
+bug_zapper = Item(
     char="~",
     color=(255, 255, 0),
     name="Bug Zapper",
     consumable=consumable.LightningDamageConsumable(damage=20, maximum_range=5),
 )
 
-confusion_scroll = Item(
+confusing_siren = Item(
     char="~",
     color=(207, 63, 255),
     name="Confusing Siren",
     consumable=consumable.ConfusionConsumable(number_of_turns=10),
 )
 
-fireball_scroll = Item(
+hairspray_grenade = Item(
     char="~",
     color=(255, 0, 0),
     name="Hairspray Grenade",
     consumable=consumable.FireballDamageConsumable(damage=12, radius=3),
 )
 
-dagger = Item(
+shiv = Item(
     char="/", 
     color=(0, 191, 255), 
-    name="Dagger", 
-    equippable=equippable.Dagger()
+    name="Shiv", 
+    equippable=equippable.Shiv()
 )
 
-sword = Item(
+lead_pipe = Item(
     char="/", 
     color=(0, 191, 255), 
-    name="Sword", 
-    equippable=equippable.Sword()
+    name="Lead Pipe", 
+    equippable=equippable.LeadPipe()
 )
 
-leather_armor = Item(
+stapler_nunchucks = Item(
+    char="//",
+    color=(56, 192, 255),
+    name="Stapler Nunchucks",
+    equippable=equippable.StaplerNunchucks()
+)
+
+jumpsuit = Item(
     char="[",
     color=(139, 69, 19),
-    name="Leather Armor",
-    equippable=equippable.LeatherArmor(),
+    name="Blue Jumpsuit",
+    equippable=equippable.BlueJumpSuit(),
 )
 
-chain_mail = Item(
-    char="[", color=(139, 69, 19), name="Chain Mail", equippable=equippable.ChainMail()
+cosplay_armor = Item(
+    char="[", 
+    color=(139, 69, 19), 
+    name="Cosplay Armor", 
+    equippable=equippable.CosplayArmor()
+)
+
+milgradefatigues = Item(
+    char="[",
+    color=(34, 200, 45),
+    name="Mil-Grade Fatigues",
+    equippable=equippable.MilGradeFatigues()
 )
