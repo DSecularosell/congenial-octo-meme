@@ -20,6 +20,7 @@ if TYPE_CHECKING:
     from engine import Engine
     from entity import Item
 
+regencounter = 0
 
 MOVE_KEYS = {
     # Arrow keys.
@@ -116,19 +117,14 @@ class PopupMessage(BaseEventHandler):
 class EventHandler(BaseEventHandler):
     def __init__(self, engine: Engine):
         self.engine = engine
-
+        
     def handle_events(self, event: tcod.event.Event) -> BaseEventHandler:
         """Handle events for input handlers with an engine."""
         action_or_state = self.dispatch(event)
-        regen_counter = 0
+        
         if isinstance(action_or_state, BaseEventHandler):
             return action_or_state
         if self.handle_action(action_or_state):
-            if regen_counter < 4:
-                regen_counter += 1
-            elif regen_counter >= 4:
-                self.engine.player.fighter.regenerate()
-                regen_counter = 0
             # A valid action was performed.
             if not self.engine.player.is_alive:
                 # The player was killed sometime during or after the action.
@@ -552,6 +548,7 @@ class MainGameEventHandler(EventHandler):
             action = BumpAction(player, dx, dy)
         elif key in WAIT_KEYS:
             action = WaitAction(player)
+            player.fighter.regenerate()
         elif key == tcod.event.K_ESCAPE:
             raise SystemExit()
         elif key == tcod.event.K_v:

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Tuple
 
 import color
 from components.base_component import BaseComponent
 from render_order import RenderOrder
+
+
+REGENTIME = 4
 
 if TYPE_CHECKING:
     from entity import Actor
@@ -62,6 +65,21 @@ class Fighter(BaseComponent):
         else:
             return 0
 
+    def regenerate(self) -> int:
+        if self.hp == self.max_hp:
+            return 0
+
+        new_hp_value = self.hp + self.regen
+
+        if new_hp_value > self.max_hp:
+            new_hp_value = self.max_hp
+
+        amount_recovered = new_hp_value - self.hp
+
+        self.hp = new_hp_value
+
+        return amount_recovered
+
     def heal(self, amount: int) -> int:
         if self.hp == self.max_hp:
             return 0
@@ -75,24 +93,6 @@ class Fighter(BaseComponent):
 
         self.hp = new_hp_value
 
-        return amount_recovered
-    
-    def regenerate(self, regen) -> int:
-        
-        regen = self.regen
-        
-        if self.hp == self.max_hp:
-            return 0
-        
-        new_hp_value = self.hp + regen
-        
-        if new_hp_value > self.max_hp:
-            new_hp_value = self.max_hp
-        
-        amount_recovered = new_hp_value - self.hp
-        
-        self.hp = new_hp_value
-        
         return amount_recovered
 
     def take_damage(self, amount: int) -> None:
