@@ -5,6 +5,8 @@ import copy
 from typing import Optional
 
 import tcod
+import tkinter as tk
+from tkinter import simpledialog
 
 import lzma
 import pickle
@@ -16,7 +18,8 @@ from game_map import GameWorld
 import input_handlers
 
 
-
+ROOT = tk.Tk()
+ROOT.withdraw()
 # Load the background image and remove the alpha channel.
 background_image = tcod.image.load("menu_background.png")[:, :, :3]
 
@@ -32,6 +35,9 @@ def new_game() -> Engine:
 
     
     player = copy.deepcopy(entity_factories.player)
+    player.name = simpledialog.askstring(
+        title="Enter your name",
+        prompt="Whats your name?: ")
     
 
     engine = Engine(player=player)
@@ -50,7 +56,7 @@ def new_game() -> Engine:
     engine.message_log.add_message(
         "You wake up in what appears to be a massive, underground Ikea store...", color.welcome_text
     )
-    player.name = input('Can you remember your name?: ')
+    engine.message_log.add_message
     shiv = copy.deepcopy(entity_factories.shiv)
     jumpsuit = copy.deepcopy(entity_factories.jumpsuit)
 
